@@ -1,0 +1,285 @@
+1. Components and Props:
+
+React components are reusable and independent building blocks of a user interface. 
+Props are used to pass data from a parent component to a child component. The child component 
+receives the data as properties and can use it within its own rendering.
+
+
+// ParentComponent.js
+import React from 'react';
+import ChildComponent from './ChildComponent';
+
+function ParentComponent() {
+  const greeting = 'Hello, world!';
+
+  return (
+    <div>
+      <ChildComponent greeting={greeting} />
+    </div>
+  );
+}
+
+export default ParentComponent;
+
+// ChildComponent.js
+import React from 'react';
+
+function ChildComponent(props) {
+  return <h1>{props.greeting}</h1>;
+}
+
+export default ChildComponent;
+
+
+In this example, the ParentComponent passes the greeting prop to the ChildComponent. 
+The ChildComponent then renders the greeting prop within an h1 element.
+
+
+2.State Management:
+
+State management in React involves managing and updating the state of a component or application. 
+The state can be modified using the setState function, which triggers a re-render of the component.
+
+
+import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increment}>Increment</button>
+    </div>
+  );
+}
+
+export default Counter;
+
+
+In this example, the Counter component maintains a state variable count using the useState hook. Clicking the "Increment" 
+button triggers the increment function, which updates the state by calling setCount.
+
+
+
+3.Hooks
+
+React hooks allow you to add state and other React features to functional components. 
+Some commonly used hooks include useState, useEffect, and useContext.
+
+import React, { useState } from 'react';
+
+function Example() {
+  const [name, setName] = useState('');
+
+  const handleChange = (event) => {
+    setName(event.target.value);
+  };
+
+  return (
+    <div>
+      <input type="text" value={name} onChange={handleChange} />
+      <p>Hello, {name}!</p>
+    </div>
+  );
+}
+
+export default Example;
+
+
+In this example, the useState hook is used to create a state variable name. 
+The handleChange function updates the name state whenever the input value changes.
+
+
+
+4. Event Handling:
+
+React provides a simple way to handle events using event handlers. Event handlers are functions that are called when 
+a specific event occurs, such as a button click or a form submission.
+
+
+import React from 'react';
+
+function Button() {
+  const handleClick = () => {
+    console.log('Button clicked!');
+  };
+
+  return <button onClick={handleClick}>Click me</button>;
+}
+
+export default Button;
+
+
+In this example, the handleClick function is called when the button is clicked. It logs a message to the console.
+
+
+
+5.Conditional Rendering:
+
+Conditional rendering in React allows you to show different 
+parts of the UI based on certain conditions or the state of the application.
+
+
+import React, { useState } from 'react';
+
+function Greeting() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
+  return (
+    <div>
+      {isLoggedIn ? (
+        <div>
+          <p>Welcome, user!</p>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      ) : (
+        <div>
+          <p>Please login to continue</p>
+          <button onClick={handleLogin}>Login</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default Greeting;
+
+
+In this example, the Greeting component conditionally renders different parts of the UI based on the isLoggedIn state. 
+If the user is logged in, it displays a welcome message and a logout button. Otherwise, it prompts the user to log in and shows a login button.
+
+
+6.Lifecycle Methods:
+
+In React, class components have lifecycle methods that allow you to perform actions at different stages of a component's lifecycle. 
+With the introduction of React hooks, you can achieve similar functionality using the useEffect hook.
+
+import React, { useEffect } from 'react';
+
+function Timer() {
+  useEffect(() => {
+    const timer = setInterval(() => {
+      console.log('Timer tick');
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  return <p>Timer component</p>;
+}
+
+export default Timer;
+
+
+In this example, the useEffect hook is used to start a timer that logs "Timer tick" every second. 
+The clearInterval function is returned in the cleanup function to stop the timer when the component is unmounted.
+
+
+7. Form Handling:
+
+React provides ways to handle form submissions, including using controlled and uncontrolled components. 
+Controlled components keep the form state in the component's state, while uncontrolled components use refs to access form values.
+
+
+import React, { useState } from 'react';
+
+function Form() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('Username:', username);
+    console.log('Password:', password);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Username:
+        <input
+          type="text"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
+      </label>
+      <label>
+        Password:
+        <input
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+
+export default Form;
+
+
+In this example, the form's state is controlled by the username and password state variables. 
+The handleSubmit function is called when the form is submitted, preventing the default form submission 
+behavior and logging the entered username and password to the console.
+
+
+8.Routing
+
+React Router is a popular library for managing routing in React applications. 
+It allows you to define routes and render different components based on the current URL.
+
+
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Home from './Home';
+import About from './About';
+import Contact from './Contact';
+
+function App() {
+  return (
+    <Router>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+        </ul>
+      </nav>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/about" component={About} />
+        <Route path="/contact" component={Contact} />
+      </Switch>
+    </Router>
+  );
+}
+
+export default App;
+
+
+In this example, the BrowserRouter component is used as the router wrapper. The Link component is used 
+to navigate between different routes. The Switch component ensures that only one route is rendered at a time.
+Each route is defined using the Route component, specifying the path and the corresponding component to render.
+The Home, About, and Contact components represent the content to be rendered for each route.
+This setup allows users to navigate between different pages in the application using the provided links.

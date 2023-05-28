@@ -1,0 +1,63 @@
+.table-component {
+    margin-top: 20px;
+  }
+  
+  .toggle-container {
+    margin-bottom: 10px;
+  }
+  
+  .toggle-container label {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th,
+table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  table thead,
+  table tbody,
+  table th,
+  table td,
+  table tr {
+    display: block;
+  }
+
+  table tr {
+    border-bottom: none;
+  }
+
+  table td {
+    border-top: none;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    padding-left: 50%;
+    white-space: normal;
+    text-align: left;
+  }
+
+  table td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    content: attr(data-label);
+    font-weight: bold;
+  }
+}
